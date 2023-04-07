@@ -1,10 +1,12 @@
 import axios from "../utils/axios";
 
 
-export const getQuestionList = (inspectionIdx) => {
+export const getQuestionList = (inspectionIdx, params) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(`/api/questions/inspections/${inspectionIdx}`)
+      .get(`/api/questions/inspections/${inspectionIdx}`, {
+        params: params
+      })
       .then((response) => {
         if (response.status === 200) {
           resolve(response.data);

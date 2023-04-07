@@ -316,7 +316,6 @@ const DataRegistPage = ({ history }) => {
   }
 
   useEffect(() => {
-    console.log('userReducer', userReducer)
     const { data } = userReducer
     if (data && data.user_idx) {
       history.push(`/ground/users/${data.user_idx}`)
@@ -324,7 +323,11 @@ const DataRegistPage = ({ history }) => {
   }, [userReducer])
 
   useEffect(() => {
-    dispatch(getQuestionList(3))
+    const params = {
+      direction: "asc",
+      sortColumn: "questionIdx"
+    }
+    dispatch(getQuestionList(3, params))
   }, [])
 
   if (loading) return <Loading />
